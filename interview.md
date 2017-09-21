@@ -120,18 +120,74 @@ BFC(Block formatting context)直译为"块级格式化上下文"。它是一个�
   - 捕获事件：事件的处理将从DOM层次的根开始，而不是从触发事件的目标元素开始，事件被从目标元素的所有祖先元素依次往下传递。
   - 冒泡事件：事件冒泡从内到外 当前元素的相关行为click触发时，会导致它的所有上级元素相关行为触发 一直到document（也可以到window）
 - `Event`对象的常见应用场景?
+ e || window.event
+      * e.type 事件类型
+      
+      * e.target || e.srcElement事件源
+      
+      * e.clientX 距离窗口的X轴坐标
+      
+      * e.clientY 距离窗口的Y轴坐标
+      
+      * e.pageX = e.pageX || (e.clientX + sLeft); 距离body的X轴坐标 
+      
+      * e.pageY = e.pageY || (e.clientY + sTop) 距离body的Y轴坐标
+      
+      * e.offsetX 距离当前元素的X轴坐标
+      
+      * e.offsetY 距离当前元素的Y轴坐标
+      
+      * e.stopPropagation() || e.cancelBubble = true 阻止冒泡传播
+      
+      * e.preventDefault() || e.returnValue = false 阻止默认行为
+      
+      * e.keyCode/e.which 键码值
+      
+      * e.key 键码符
+      
+      * e.wheelDelta 滚轮方向
 
 - 事件委托是什么？
+
+利用事件默认会进行冒泡传播的机制 给最外层元素相关行为绑定事件，当里面元素相关行为触发的时候 也会触发最外层元素的行为 然后我们可以根据事件对象中的事件源做出相应的处理
 - 事件冒泡,e.target和e.currentTarget的区别
+
+  event.currentTarget指向事件所绑定的元素，而event.target始终指向事件发生时的元素
 - 浏览器的兼容问题(js)
 
 ## JS原生
 - JS中有哪些数据类型
+  - 基本数据类型：Number,Boolean,Null,Undefined,String
+  - 引用数据类型：Object
 - 什么是闭包？闭包作用？在工作中是如何应用的?
+  - 闭包：函数执行都会形成一个私有作用域 保护里面私有变量不受外界干扰 这种保护机制叫闭包
+  - 作用：可以读取函数内部的变量，可以避免全局污染，方便封装
+  - 如何应用：采用函数引用方式的setTimeout调用；将函数关联到对象的实例方法；封装相关的功能集。
 - JS实现继承的几种方式?
+    1、类式继承；
+    
+    2、构造函数继承；
+    
+    3、组合继承；
+    
+    4、原型式继承；
+    
+    5、寄生式；
+    
+    6、寄生组合式继承。
 - 创建对象的三种方式?
+  字面量创建 ，构造函数创建 ，通过object创建
 - `new Person()`时发生了什么?
+
+(1) 创建一个新对象；
+
+(2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；
+
+(3) 执行构造函数中的代码（为这个新对象添加属性） ；
+
+(4) 返回新对象。
 - 什么是深拷贝和浅拷贝？自己不用`JSON.parse`实现一个深拷贝的方法
+
 - 手工模拟完整的bind方法
 - 什么是节流和防抖？
 - 上拉刷新和下拉加载的实现原理？
